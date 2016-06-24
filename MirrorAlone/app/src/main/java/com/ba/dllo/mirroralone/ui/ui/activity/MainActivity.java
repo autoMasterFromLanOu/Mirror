@@ -1,7 +1,9 @@
-package com.ba.dllo.mirroralone;
+package com.ba.dllo.mirroralone.ui.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.ba.dllo.mirroralone.R;
 
 public class MainActivity extends AppCompatActivity {
 
