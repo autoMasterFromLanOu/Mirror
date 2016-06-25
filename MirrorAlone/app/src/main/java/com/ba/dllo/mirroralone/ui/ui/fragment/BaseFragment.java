@@ -71,6 +71,8 @@ public abstract class BaseFragment extends Fragment {
 
     public abstract void initData();
 
+
+
     protected void jumpTo(Class<?> activity, Bundle bundle) {
         Intent intent = new Intent(getContext(), activity.getClass());
         intent.putExtras(bundle);

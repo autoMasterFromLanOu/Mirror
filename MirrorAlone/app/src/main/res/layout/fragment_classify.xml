@@ -1,13 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@mipmap/ic_bg">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="鸿翔"
-        android:textColor="#fff" />
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/fragment_classify_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30px"
+        android:layout_marginTop="20px"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14px"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_classify_titles_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="浏览所有分类"
+                android:textColor="#ffffff"
+                android:textSize="30px" />
+
+            <ImageView
+                android:layout_marginTop="4px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@mipmap/ic_pull_dowm" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_line" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="1px"
+            android:src="@mipmap/ic_line" />
+
+        <TextView
+            android:id="@+id/fragment_classify_show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26px"
+            android:text="显示排序为 最新推荐"
+            android:textColor="#fff"
+            android:textSize="24px" />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_classify_rv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_classify_list"
+        android:layout_marginLeft="22px"
+        android:layout_marginTop="94px" />
+
+
+    <ListView
+        android:id="@+id/fragment_classify_lv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60px"
+        android:layout_marginTop="148px"
+        android:divider="@null"
+        android:visibility="gone" />
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/fragment_classify_null_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/fragment_classify_null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/ic_null" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fragment_classify_null"
+            android:layout_marginTop="20px"
+            android:text="您的购物车里没有商品"
+            android:textColor="#fff"
+            android:textSize="40px" />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+</com.zhy.autolayout.AutoRelativeLayout>

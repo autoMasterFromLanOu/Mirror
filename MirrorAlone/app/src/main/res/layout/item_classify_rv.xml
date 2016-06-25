@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="540px"
+    android:layout_height="833px"
+    android:layout_marginRight="22px"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/item_rv_img"
+        android:layout_width="540px"
+        android:layout_height="595px"
+        android:background="#000"
+        android:src="@mipmap/ic_han" />
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="540px"
+        android:layout_height="238px"
+        android:background="#fff"
+        android:orientation="vertical">
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/item_rv_name_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32px"
+                android:layout_marginTop="50px"
+                android:text="SEE CONCEPT"
+                android:textColor="#000"
+                android:textSize="30px"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/item_rv_produce_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_rv_name_img"
+                android:layout_marginLeft="32px"
+                android:layout_marginTop="16px"
+                android:text="法国巴黎"
+                android:textColor="#333"
+                android:textSize="24px" />
+
+            <TextView
+                android:id="@+id/item_rv_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="32px"
+                android:layout_marginTop="50px"
+                android:text="450"
+                android:textColor="#000"
+                android:textSize="30px"
+                android:textStyle="bold" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32px"
+            android:layout_marginRight="32px"
+            android:layout_marginTop="30px"
+            android:src="@mipmap/ic_black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32px"
+            android:layout_marginTop="16px"
+            android:text="草莓红色圆框阅读镜"
+            android:textColor="#000"
+            android:textSize="30px" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>
