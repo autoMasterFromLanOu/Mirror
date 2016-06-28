@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:background="@mipmap/ic_pull_dowm" />
+                android:background="@mipmap/ic_pull_down" />
         </com.zhy.autolayout.AutoLinearLayout>
 
         <ImageView

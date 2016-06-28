@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -46,9 +47,9 @@ public class ClassifyFragment extends BaseFragment {
     private List<String> titles;
     private String title;
     private MyListener myListener;
-
     private ClassifyRvAdapter classifyRvAdapter;
     private List<Integer> imgs;
+    private int num;
 
     public void setMyListener(MyListener myListener) {
         this.myListener = myListener;
@@ -66,6 +67,12 @@ public class ClassifyFragment extends BaseFragment {
             classifyRv.setVisibility(View.GONE);
             listLayout.setVisibility(View.VISIBLE);
             nullLayout.setVisibility(View.VISIBLE);
+        } else {
+            Log.d("这是一个log", "听说");
+            titlesLv.setVisibility(View.GONE);
+            nullLayout.setVisibility(View.GONE);
+            classifyRv.setVisibility(View.VISIBLE);
+            listLayout.setVisibility(View.VISIBLE);
         }
 
         titles = new ArrayList<>();
@@ -83,11 +90,12 @@ public class ClassifyFragment extends BaseFragment {
         listLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int num = myListener.MyListener();
+                num = myListener.MyListener();
                 classifyAdapter.setPos(num);
                 titlesLv.setVisibility(View.VISIBLE);
                 listLayout.setVisibility(View.GONE);
                 classifyRv.setVisibility(View.GONE);
+                nullLayout.setVisibility(View.GONE);
             }
         });
 
@@ -95,9 +103,10 @@ public class ClassifyFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 titlesLv.setVisibility(View.GONE);
-                nullLayout.setVisibility(View.GONE);
                 listLayout.setVisibility(View.VISIBLE);
+                nullLayout.setVisibility(View.GONE);
                 classifyRv.setVisibility(View.VISIBLE);
+
 
             }
         });
@@ -111,6 +120,7 @@ public class ClassifyFragment extends BaseFragment {
 
                 if (0 <= position && position < 4) {
                     titlesLv.setVisibility(View.GONE);
+                    nullLayout.setVisibility(View.GONE);
                     classifyRv.setVisibility(View.VISIBLE);
                     listLayout.setVisibility(View.VISIBLE);
 

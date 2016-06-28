@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="590px"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@android:color/black"
+        android:padding="28px">
+
+        <View
+            android:id="@+id/item_details_top_v_1"
+            android:layout_width="match_parent"
+            android:layout_height="4px"
+            android:background="@mipmap/ic_line" />
+
+        <TextView
+            android:id="@+id/item_details_top_name_tv"
+            style="@style/DetailsActivityTextViewStyle"
+            android:layout_below="@id/item_details_top_v_1"
+            android:layout_marginTop="30px"
+            android:text="测试"
+            android:textSize="60px" />
+
+        <View
+            android:id="@+id/item_details_top_v_2"
+            android:layout_width="match_parent"
+            android:layout_height="4px"
+            android:layout_below="@id/item_details_top_name_tv"
+            android:layout_marginTop="34px"
+            android:background="@mipmap/ic_line" />
+
+        <TextView
+            android:id="@+id/item_details_top_content_tv"
+            style="@style/DetailsActivityTextViewStyle"
+            android:layout_below="@id/item_details_top_v_2"
+            android:layout_marginBottom="16px"
+            android:layout_marginTop="30px"
+            android:text="测试"
+            android:textSize="26px" />
+
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+</com.zhy.autolayout.AutoRelativeLayout>
