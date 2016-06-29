@@ -36,6 +36,8 @@ public class VideoViewActivity extends BaseActivity implements View.OnClickListe
     @BindView(R.id.aty_video_rl)
     private View autoRl;
     private ImageView popImg;
+    @BindView(R.id.item_video_close)
+    private ImageView closeImg;
 
     @Override
     public void initData() {
@@ -85,6 +87,8 @@ public class VideoViewActivity extends BaseActivity implements View.OnClickListe
                 popImg.setImageResource(imgs.get(position - 1));
             }
         });
+
+        closeImg.setOnClickListener(this);
     }
 
     @Override
@@ -92,6 +96,9 @@ public class VideoViewActivity extends BaseActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.item_pop_img:
                 myPop.dismiss();
+                break;
+            case R.id.item_video_close:
+                finish();
                 break;
         }
     }

@@ -6,9 +6,9 @@
 
     <ImageView
         android:id="@+id/item_below_img"
+        android:scaleType="fitXY"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@mipmap/ic_ruo" />
-
 
 </com.zhy.autolayout.AutoLinearLayout>

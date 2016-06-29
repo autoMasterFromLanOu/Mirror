@@ -117,11 +117,7 @@ public class MyAllAddressActivity extends BaseActivity {
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             layout.setLayoutParams(lp);
             View view = LayoutInflater.from(mContext).inflate(R.layout.item_myall_address, layout, false);
-//            TextView nameTv, addressTv, numTv;
-//            nameTv = (TextView) view.findViewById(R.id.address_item_recipient_name);
-//            addressTv = (TextView) view.findViewById(R.id.address_item_address);
-//            nameTv.setText("花花");
-//            nameTv.setPadding(0, 30, 10, 30);
+
             ImageView changeImg;
             changeImg = (ImageView) view.findViewById(R.id.address_change_img);
             changeImg.setOnClickListener(new View.OnClickListener() {
@@ -136,20 +132,20 @@ public class MyAllAddressActivity extends BaseActivity {
         }
 
         @Override
-        protected View generateRightView(final int position) {
-            LinearLayout layout = new LinearLayout(mContext);
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            layout.setLayoutParams(lp);
-            View view = LayoutInflater.from(mContext).inflate(R.layout.item_delete, layout, false);
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(mContext, "del " + addressBeen.get(position), Toast.LENGTH_SHORT).show();
-                    addressBeen.remove(position);
-                    notifyDataSetChanged();
-                }
-            });
-            return view;
+            protected View generateRightView(final int position) {
+                LinearLayout layout = new LinearLayout(mContext);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                layout.setLayoutParams(lp);
+                View view = LayoutInflater.from(mContext).inflate(R.layout.item_delete, layout, false);
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(mContext, "del " + addressBeen.get(position), Toast.LENGTH_SHORT).show();
+                        addressBeen.remove(position);
+                        notifyDataSetChanged();
+                    }
+                });
+                return view;
         }
     }
 }

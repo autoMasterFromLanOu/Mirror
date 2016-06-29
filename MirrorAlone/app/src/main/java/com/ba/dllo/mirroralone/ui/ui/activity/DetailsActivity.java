@@ -26,6 +26,9 @@ import com.zhy.autolayout.AutoFrameLayout;
 
 import java.util.List;
 
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+
 /**
  * 第二级详情界面
  * Created by ${巴为焱} on 16/6/27.
@@ -44,15 +47,17 @@ public class DetailsActivity extends BaseActivity implements AbsListView.OnScrol
     @BindView(R.id.aty_details_bug_img)
     private ImageView bugImg;
     @BindView(R.id.aty_details_back_img)
-    private ImageView backImg;
+    private ImageView backImg, shareImg;
 
     @Override
     public void initData() {
+        getSupportActionBar().hide();
         // 一开始就利用属性动画将底部功能栏滑出屏幕
         showObjectAnimator(0, -ScreenUtils.getScreenHeight(MyApp.getContext()), 0);
 
         //给底层listview添加头布局
         View view = LayoutInflater.from(this).inflate(R.layout.head_view, null);
+        shareImg = (ImageView) view.findViewById(R.id.head_detail_share_img);
         // 底层ListView头布局中全透明部分
         AutoFrameLayout frameLayout = (AutoFrameLayout) view.findViewById(R.id.head_detail_null_fl);
         frameLayout.setMinimumHeight(ScreenUtils.getScreenHeight(MyApp.getContext()));
@@ -78,6 +83,7 @@ public class DetailsActivity extends BaseActivity implements AbsListView.OnScrol
         bugImg.setOnClickListener(this);
         backImg.setOnClickListener(this);
         adornBtn.setOnClickListener(this);
+        shareImg.setOnClickListener(this);
     }
 
     @Override
@@ -99,8 +105,8 @@ public class DetailsActivity extends BaseActivity implements AbsListView.OnScrol
         if (firstVisibleItem >= 1) {
             // 当第一个可见的Item >=1 时, 让表层ListView滑动
             upLv.setScrollY((int) (getScrollY(belowLv) * 1.2));
-        }
 
+        }
 
         if (firstVisibleItem == 0) {
             // 当第一个可见的Item为0时, 将底部功能栏滑出屏幕
@@ -150,6 +156,39 @@ public class DetailsActivity extends BaseActivity implements AbsListView.OnScrol
             case R.id.aty_details_wear_images_btn:
                 startActivity(new Intent(this, VideoViewActivity.class));
                 break;
+            case R.id.head_detail_share_img:
+                Toast.makeText(this, "diandiandian", Toast.LENGTH_SHORT).show();
+                showShare();
+                break;
         }
+    }
+
+    private void showShare() {
+        ShareSDK.initSDK(this);
+        OnekeyShare oks = new OnekeyShare();
+        //关闭sso授权
+        oks.disableSSOWhenAuthorize();
+
+// 分享时Notification的图标和文字  2.5.9以后的版本不调用此方法
+        //oks.setNotification(R.drawable.ic_launcher, getString(R.string.app_name));
+        // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
+//        oks.setTitle(getString(R.string.share));
+        // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
+        oks.setTitleUrl("https://www.baidu.com");
+        // text是分享文本，所有平台都需要这个字段
+        oks.setText("鸿翔");
+        // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+        //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
+        // url仅在微信（包括好友和朋友圈）中使用
+        oks.setUrl("http://sharesdk.cn");
+        // comment是我对这条分享的评论，仅在人人网和QQ空间使用
+        oks.setComment("我是测试评论文本");
+        // site是分享此内容的网站名称，仅在QQ空间使用
+        oks.setSite(getString(R.string.app_name));
+        // siteUrl是分享此内容的网站地址，仅在QQ空间使用
+        oks.setSiteUrl("http://sharesdk.cn");
+
+// 启动分享GUI
+        oks.show(this);
     }
 }

@@ -2,7 +2,6 @@
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20px"
     android:orientation="vertical">
 
     <ImageView
@@ -10,6 +9,7 @@
         android:layout_width="660px"
         android:layout_height="380px"
         android:layout_gravity="center"
-        android:layout_marginTop="20px" />
+        android:layout_marginTop="20px"
+        android:scaleType="fitXY" />
 
 </com.zhy.autolayout.AutoLinearLayout>

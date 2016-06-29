@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.app.Fragment;
+import android.view.View;
 import android.widget.TextView;
 
 import com.ba.dllo.mirroralone.ui.ui.utils.MyListener;
@@ -23,7 +24,7 @@ public class MainActivity extends BaseActivity implements MyListener {
     @BindView(R.id.aty_main_vp)
     private VerticalViewPager mainVp;
     @BindView(R.id.aty_main_login_tv)
-    private TextView longinTv;
+    private TextView loginTv;
     private MainAdapter mainAdapter;
     private List<Fragment> fragments;
     private MainReceiver mainReceiver;
@@ -63,6 +64,12 @@ public class MainActivity extends BaseActivity implements MyListener {
 
     @Override
     public void setListener() {
+        loginTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        });
 
     }
 
