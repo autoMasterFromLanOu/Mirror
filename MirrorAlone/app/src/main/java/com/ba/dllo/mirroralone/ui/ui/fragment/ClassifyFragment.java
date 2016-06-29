@@ -14,12 +14,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ba.dllo.mirroralone.ui.ui.activity.DetailsActivity;
 import com.ba.dllo.mirroralone.ui.ui.adapter.ClassifyRvAdapter;
 import com.ba.dllo.mirroralone.ui.ui.utils.MyListener;
 import com.ba.dllo.mirroralone.R;
 import com.ba.dllo.mirroralone.ui.ui.adapter.ClassifyAdapter;
 import com.ba.dllo.mirroralone.ui.ui.utils.BindContent;
 import com.ba.dllo.mirroralone.ui.ui.utils.BindView;
+import com.ba.dllo.mirroralone.ui.ui.utils.MyRvListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +70,6 @@ public class ClassifyFragment extends BaseFragment {
             listLayout.setVisibility(View.VISIBLE);
             nullLayout.setVisibility(View.VISIBLE);
         } else {
-            Log.d("这是一个log", "听说");
             titlesLv.setVisibility(View.GONE);
             nullLayout.setVisibility(View.GONE);
             classifyRv.setVisibility(View.VISIBLE);
@@ -106,8 +107,6 @@ public class ClassifyFragment extends BaseFragment {
                 listLayout.setVisibility(View.VISIBLE);
                 nullLayout.setVisibility(View.GONE);
                 classifyRv.setVisibility(View.VISIBLE);
-
-
             }
         });
 
@@ -130,7 +129,6 @@ public class ClassifyFragment extends BaseFragment {
                     titlesLv.setVisibility(View.GONE);
                     listLayout.setVisibility(View.VISIBLE);
                     classifyRv.setVisibility(View.GONE);
-
                 }
                 if (position == 5) {
                     titlesLv.setVisibility(View.GONE);
@@ -156,8 +154,15 @@ public class ClassifyFragment extends BaseFragment {
             imgs.add(R.mipmap.ic_han);
         }
         classifyRvAdapter.setImgs(imgs);
-        classifyRv.setAdapter(classifyRvAdapter);
-    }
+        classifyRvAdapter.setMyRvListener(new MyRvListener() {
+            @Override
+            public void myRvListener() {
 
+                startActivity(new Intent(context, DetailsActivity.class));
+            }
+        });
+        classifyRv.setAdapter(classifyRvAdapter);
+
+    }
 
 }

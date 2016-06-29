@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.ba.dllo.mirroralone.R;
+import com.ba.dllo.mirroralone.ui.ui.MyApp;
+import com.ba.dllo.mirroralone.ui.ui.utils.ScreenUtils;
 
 import java.util.List;
 
@@ -16,20 +18,15 @@ import java.util.List;
  */
 public class DetailsBelowAdapter extends BaseAdapter {
     private Context context;
-    private List<Integer> belowDatas;
 
     public DetailsBelowAdapter(Context context) {
         this.context = context;
     }
 
-    public void setBelowDatas(List<Integer> belowDatas) {
-        this.belowDatas = belowDatas;
-        notifyDataSetChanged();
-    }
 
     @Override
     public int getCount() {
-        return belowDatas == null ? 0 : belowDatas.size();
+        return 10;
     }
 
     @Override
@@ -47,11 +44,13 @@ public class DetailsBelowAdapter extends BaseAdapter {
         ViewHolder holder = null;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_below_lv, parent, false);
+            convertView.setMinimumHeight(ScreenUtils.getScreenHeight(MyApp.getContext()) / 3 * 2);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+        holder.belowImg.setMinimumHeight(ScreenUtils.getScreenHeight(MyApp.getContext()) / 3 * 2);
         return convertView;
     }
 

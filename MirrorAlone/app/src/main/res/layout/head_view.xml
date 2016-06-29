@@ -10,14 +10,8 @@
         android:alpha="0.3"
         android:background="@android:color/black">
 
-        <!--<ImageView-->
-        <!--android:id="@+id/head_view_activity_detail_background"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:background="@mipmap/aaaabbbb" />-->
-
         <ImageView
-            android:id="@+id/head_view_activity_detail_share_iv"
+            android:id="@+id/head_detail_share_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -28,7 +22,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-
         <com.zhy.autolayout.AutoRelativeLayout
             android:layout_width="700px"
             android:layout_height="wrap_content"
@@ -37,50 +30,50 @@
             android:paddingBottom="60px">
 
             <TextView
-                android:id="@+id/head_view_activity_detail_title_tv"
+                android:id="@+id/head_detail_title_tv"
                 style="@style/DetailsActivityTextViewStyle"
                 android:layout_marginTop="100px"
                 android:text="测试"
                 android:textSize="50px" />
 
             <View
-                android:id="@+id/head_view_activity_detail_write_line_1"
+                android:id="@+id/head_detail_write_line_one"
                 android:layout_width="520px"
                 android:layout_height="4px"
-                android:layout_below="@id/head_view_activity_detail_title_tv"
+                android:layout_below="@id/head_detail_title_tv"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="36px"
                 android:background="@mipmap/ic_line" />
 
             <TextView
-                android:id="@+id/head_view_activity_detail_name_tv"
+                android:id="@+id/head_detail_name_tv"
                 style="@style/DetailsActivityTextViewStyle"
-                android:layout_below="@id/head_view_activity_detail_write_line_1"
+                android:layout_below="@id/head_detail_write_line_one"
                 android:layout_marginTop="19px"
                 android:text="测试"
                 android:textSize="36px" />
 
             <View
-                android:id="@+id/head_view_activity_detail_write_line_2"
+                android:id="@+id/head_detail_write_line_two"
                 android:layout_width="520px"
                 android:layout_height="4px"
-                android:layout_below="@id/head_view_activity_detail_name_tv"
+                android:layout_below="@id/head_detail_name_tv"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="19px"
                 android:background="@mipmap/ic_line" />
 
             <TextView
-                android:id="@+id/head_view_activity_detail_content_tv"
+                android:id="@+id/head_detail_content_tv"
                 style="@style/DetailsActivityTextViewStyle"
-                android:layout_below="@id/head_view_activity_detail_write_line_2"
+                android:layout_below="@id/head_detail_write_line_two"
                 android:layout_marginTop="42px"
                 android:text="测试"
                 android:textSize="26px" />
 
             <TextView
-                android:id="@+id/head_view_activity_detail_price_tv"
+                android:id="@+id/head_detail_price_tv"
                 style="@style/DetailsActivityTextViewStyle"
-                android:layout_below="@id/head_view_activity_detail_content_tv"
+                android:layout_below="@id/head_detail_content_tv"
                 android:layout_marginTop="60px"
                 android:drawableLeft="@mipmap/ic_money"
                 android:text="测试"
@@ -89,7 +82,7 @@
 
 
         <ImageView
-            android:id="@+id/head_view_activity_detail_arrow_iv"
+            android:id="@+id/head_detail_arrow_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -99,7 +92,7 @@
 
         <TextView
             style="@style/DetailsActivityTextViewStyle"
-            android:layout_above="@id/head_view_activity_detail_arrow_iv"
+            android:layout_above="@id/head_detail_arrow_iv"
             android:layout_marginBottom="14px"
             android:text="测试"
             android:textSize="22px" />
@@ -107,7 +100,7 @@
     </com.zhy.autolayout.AutoRelativeLayout>
 
     <com.zhy.autolayout.AutoFrameLayout
-        android:id="@+id/head_view_activity_detail_null_fl"
+        android:id="@+id/head_detail_null_fl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/head_view_activity_detail_first" />

@@ -71,6 +71,7 @@ public class MainActivity extends BaseActivity implements MyListener {
         return mainVp.getCurrentItem();
     }
 
+
     class MainReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {

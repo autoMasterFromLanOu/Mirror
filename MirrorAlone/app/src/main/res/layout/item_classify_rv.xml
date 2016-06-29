@@ -2,6 +2,7 @@
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="540px"
     android:layout_height="833px"
+    android:id="@+id/classify_tv_root"
     android:layout_marginRight="22px"
     android:orientation="vertical">
 
@@ -9,8 +10,7 @@
         android:id="@+id/item_rv_img"
         android:layout_width="540px"
         android:layout_height="595px"
-        android:background="#000"
-        android:src="@mipmap/ic_han" />
+        android:background="#000" />
 
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="540px"
