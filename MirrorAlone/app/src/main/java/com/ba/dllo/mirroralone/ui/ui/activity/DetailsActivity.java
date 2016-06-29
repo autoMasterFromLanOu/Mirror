@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.ba.dllo.mirroralone.R;
 import com.ba.dllo.mirroralone.ui.ui.MyApp;
+import com.ba.dllo.mirroralone.ui.ui.activity.adornimage.VideoViewActivity;
 import com.ba.dllo.mirroralone.ui.ui.activity.buydetails.OrderDetailsActivity;
 import com.ba.dllo.mirroralone.ui.ui.adapter.DetailsBelowAdapter;
 import com.ba.dllo.mirroralone.ui.ui.adapter.DetailsUpAdapter;
@@ -76,6 +77,7 @@ public class DetailsActivity extends BaseActivity implements AbsListView.OnScrol
         //购买按钮的监听
         bugImg.setOnClickListener(this);
         backImg.setOnClickListener(this);
+        adornBtn.setOnClickListener(this);
     }
 
     @Override
@@ -144,6 +146,10 @@ public class DetailsActivity extends BaseActivity implements AbsListView.OnScrol
                 break;
             case R.id.aty_details_bug_img:
                 startActivity(new Intent(this, OrderDetailsActivity.class));
+                break;
+            case R.id.aty_details_wear_images_btn:
+                startActivity(new Intent(this, VideoViewActivity.class));
+                break;
         }
     }
 }
