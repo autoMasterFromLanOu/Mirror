@@ -23,7 +23,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         setListener();
     }
 
-
     //绑定布局
     public void contentInject() {
         Class myClass = this.getClass();

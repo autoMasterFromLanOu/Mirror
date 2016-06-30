@@ -54,6 +54,7 @@
         android:layout_below="@id/aty_myaddress_btn"
         android:layout_marginLeft="30px"
         android:layout_marginRight="30px"
-        android:layout_marginTop="20px" />
+        android:layout_marginTop="20px"
+        android:scrollbars="none" />
 
 </com.zhy.autolayout.AutoRelativeLayout>

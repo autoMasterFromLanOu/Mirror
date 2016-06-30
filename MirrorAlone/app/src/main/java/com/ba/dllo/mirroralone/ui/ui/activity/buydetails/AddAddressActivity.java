@@ -9,9 +9,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.ba.dllo.mirroralone.R;
+import com.ba.dllo.mirroralone.model.bean.Address;
 import com.ba.dllo.mirroralone.ui.ui.activity.BaseActivity;
 import com.ba.dllo.mirroralone.ui.ui.utils.BindContent;
 import com.ba.dllo.mirroralone.ui.ui.utils.BindView;
+import com.litesuits.orm.LiteOrm;
 
 /**
  * 此页面是添加收件人地址页面
@@ -31,10 +33,12 @@ public class AddAddressActivity extends BaseActivity {
     private ImageView returnImg;
     @BindView(R.id.aty_addadress_presentbtn)
     private Button presentBtn;
+    private Address myAddress;
 
 
     @Override
     public void initData() {
+        getSupportActionBar().hide();
 
     }
 
@@ -66,15 +70,17 @@ public class AddAddressActivity extends BaseActivity {
                     Toast.makeText(AddAddressActivity.this, "请填写信息", Toast.LENGTH_SHORT).show();
                 }
                 if (name.length() != 0 && num.length() != 0 && address.length() != 0) {
-//                    SharedPreferences sharedPreferences = getSharedPreferences("information", MODE_PRIVATE);
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.putString("name", name);
-//                    editor.putString("num", num);
-//                    editor.putString("address", address);
-//                    editor.commit();
+
+                    LiteOrm liteOrm = LiteOrm.newCascadeInstance(AddAddressActivity.this, "address.db");
+                    liteOrm.insert(new Address(address, name, num));
+
                     Toast.makeText(AddAddressActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(AddAddressActivity.this, MyAllAddressActivity.class);
+                    intent.putExtra("name", name);
+                    intent.putExtra("num", num);
+                    intent.putExtra("address", address);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

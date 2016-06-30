@@ -6,6 +6,8 @@ package com.ba.dllo.mirroralone.ui.ui.activity.buydetails;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +15,21 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import com.ba.dllo.mirroralone.R;
+import com.ba.dllo.mirroralone.model.bean.Address;
+import com.ba.dllo.mirroralone.ui.ui.MyApp;
 import com.ba.dllo.mirroralone.ui.ui.activity.BaseActivity;
 import com.ba.dllo.mirroralone.ui.ui.adapter.buydetails.MyAllAddressAdapter;
 import com.ba.dllo.mirroralone.ui.ui.utils.BindContent;
 import com.ba.dllo.mirroralone.ui.ui.utils.BindView;
 import com.ba.dllo.mirroralone.view.SwipListView;
+import com.litesuits.orm.LiteOrm;
 
 /**
  * 此页面是显示收件人所有收货地址页面
@@ -37,19 +45,28 @@ public class MyAllAddressActivity extends BaseActivity {
     private SwipListView addressLv;
     @BindView(R.id.aty_myaddress_returniv)
     private ImageView returnImg;
-    private List<String> addressBeen = new ArrayList<>();
+    //    private List<String> addressBeen = new ArrayList<>();
+    private List<Address> addressBean;
+    private Address myAddress;
+    private LiteOrm liteOrm;
+
 
     @Override
     public void initData() {
+        getSupportActionBar().hide();
         AddressAdapter addressAdapter = new AddressAdapter(this);
-
-        for (int i = 0; i < 20; i++) {
-            addressBeen.add("花花");
-        }
+        liteOrm = LiteOrm.newCascadeInstance(MyAllAddressActivity.this, "address.db");
+        addressBean = liteOrm.query(Address.class);
+        addressAdapter.setAddresses(addressBean);
         addressLv.setAdapter(addressAdapter);
         addressLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                SharedPreferences sharedPreferences = getSharedPreferences("position", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("pos",position);
+                editor.commit();
+                finish();
                 Toast.makeText(MyAllAddressActivity.this, "现在的位置是:" + position, Toast.LENGTH_SHORT).show();
             }
         });
@@ -66,6 +83,7 @@ public class MyAllAddressActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MyAllAddressActivity.this, AddAddressActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -80,25 +98,27 @@ public class MyAllAddressActivity extends BaseActivity {
     }
 
     class AddressAdapter extends MyAllAddressAdapter {
-        private List<String> datas;
+        private List<Address> addresses;
+
 
         public AddressAdapter(Context context) {
             super(context);
         }
 
-        public void setDatas(List<String> datas) {
-            this.datas = datas;
+
+        public void setAddresses(List<Address> addresses) {
+            this.addresses = addresses;
             notifyDataSetChanged();
         }
 
         @Override
         public int getCount() {
-            return addressBeen == null ? 0 : addressBeen.size();
+            return addresses == null ? 0 : addresses.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return addressBeen.get(position);
+            return addresses.get(position);
         }
 
         @Override
@@ -112,40 +132,52 @@ public class MyAllAddressActivity extends BaseActivity {
         }
 
         @Override
-        protected View generateLeftView(int position) {
+        protected View generateLeftView(final int position) {
             LinearLayout layout = new LinearLayout(mContext);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             layout.setLayoutParams(lp);
-            View view = LayoutInflater.from(mContext).inflate(R.layout.item_myall_address, layout, false);
 
+            View view = LayoutInflater.from(mContext).inflate(R.layout.item_myall_address, layout, false);
+            TextView nameTv, numTv, addressTv;
             ImageView changeImg;
+            nameTv = (TextView) view.findViewById(R.id.aty_myaddress_name);
+            numTv = (TextView) view.findViewById(R.id.aty_myaddress_num);
+            addressTv = (TextView) view.findViewById(R.id.aty_myaddress_address);
             changeImg = (ImageView) view.findViewById(R.id.address_change_img);
+
+            nameTv.setText(addresses.get(position).getName());
+            numTv.setText(addresses.get(position).getNum());
+            addressTv.setText(addresses.get(position).getAddress());
+
             changeImg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(MyAllAddressActivity.this, ModifiedAddressActivity.class);
+                    intent.putExtra("pos", position);
                     startActivity(intent);
+                    finish();
                 }
             });
-
             return view;
         }
 
         @Override
-            protected View generateRightView(final int position) {
-                LinearLayout layout = new LinearLayout(mContext);
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                layout.setLayoutParams(lp);
-                View view = LayoutInflater.from(mContext).inflate(R.layout.item_delete, layout, false);
-                view.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(mContext, "del " + addressBeen.get(position), Toast.LENGTH_SHORT).show();
-                        addressBeen.remove(position);
-                        notifyDataSetChanged();
-                    }
-                });
-                return view;
+        protected View generateRightView(final int position) {
+            LinearLayout layout = new LinearLayout(mContext);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            layout.setLayoutParams(lp);
+            View view = LayoutInflater.from(mContext).inflate(R.layout.item_delete, layout, false);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(mContext, "删除第 " + position + "条", Toast.LENGTH_SHORT).show();
+                    myAddress = liteOrm.queryById(addressBean.get(position).getId(), Address.class);
+                    liteOrm.delete(myAddress);
+                    addressBean.remove(position);
+                    notifyDataSetChanged();
+                }
+            });
+            return view;
         }
     }
 }
